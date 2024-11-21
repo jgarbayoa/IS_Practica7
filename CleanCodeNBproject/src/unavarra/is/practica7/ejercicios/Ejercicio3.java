@@ -1,31 +1,25 @@
 package unavarra.is.practica7.ejercicios;
 
 public class Ejercicio3 {
+    enum HMS { correcto,segundos_incorrectos,minutos_incorrectos,hora_incorrecta;}
 
-    public static String horaMinutoSegundo(int h, int m, int s){
-        String resul = "";
-        if(h>0 && h<24){
-            if(m>0 && m<60){
-                if(s>0 && s<60){
-                    resul = "correcto";
-                }
-                else{
-                    resul = "segundos incorrectos";
-                }
-            }
-            else{
-                resul = "minutos incorrectos";
-            }
+    public static HMS horaCorrecta(int hora, int minuto, int segundo){
+        
+        if(hora>0 && hora<24 && minuto>0 && minuto<60 && segundo>0 && segundo<60){
+            return HMS.correcto;
         }
-        else{
-            resul = "hora incorrecta";
+        if (hora>0 && hora<24 && minuto>0 && minuto<60){
+            return HMS.segundos_incorrectos;
         }
-        return resul;
+        if (hora>0 && hora<24){
+            return HMS.minutos_incorrectos;
+        }
+        return HMS.hora_incorrecta;
     }
 
     public static void main(String[] args) {
-        System.out.println(horaMinutoSegundo(9,34,23));
-        System.out.println(horaMinutoSegundo(25,34,23));
+        System.out.println(horaCorrecta(9,34,23));
+        System.out.println(horaCorrecta(25,34,23));
     }
     
 }
